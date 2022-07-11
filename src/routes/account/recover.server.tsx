@@ -17,11 +17,14 @@ import {Layout} from '~/components/index.server';
  * to reset their password. Clicking the link leads the user to the
  * page `/account/reset/[resetToken]`.
  */
-export default function AccountRecover({response}: HydrogenRouteProps) {
+export default function AccountRecover({
+  response,
+  ...serverProps
+}: HydrogenRouteProps) {
   response.cache(CacheNone());
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: 'Recover password'}} />
       </Suspense>

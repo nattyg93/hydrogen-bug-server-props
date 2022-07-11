@@ -17,6 +17,7 @@ import type {
 export function NotFound({
   response,
   type = 'page',
+  ...serverProps
 }: {
   response?: HydrogenResponse;
   type?: string;
@@ -30,7 +31,7 @@ export function NotFound({
   const description = `We couldn’t find the ${type} you’re looking for. Try checking the URL or heading back to the home page.`;
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <PageHeader heading={heading}>
         <Text width="narrow" as="p">
           {description}

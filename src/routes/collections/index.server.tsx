@@ -6,9 +6,9 @@ import {PageHeader, Section, Grid} from '~/components';
 import {Layout, CollectionCard} from '~/components/index.server';
 import {getImageLoadingPriority, PAGINATION_SIZE} from '~/lib/const';
 
-export default function Collections() {
+export default function Collections({...serverProps}) {
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Seo type="page" data={{title: 'All Collections'}} />
       <PageHeader heading="Collections" />
       <Section>

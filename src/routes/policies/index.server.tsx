@@ -11,7 +11,7 @@ import type {Shop} from '@shopify/hydrogen/storefront-api-types';
 import {PageHeader, Section, Heading} from '~/components';
 import {Layout, NotFound} from '~/components/index.server';
 
-export default function Policies() {
+export default function Policies({...serverProps}) {
   const {
     language: {isoCode: languageCode},
   } = useLocalization();
@@ -52,7 +52,7 @@ export default function Policies() {
   }
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <PageHeader heading="Policies" />
       <Section padding="x" className="mb-24">
         {policies.map((policy) => {

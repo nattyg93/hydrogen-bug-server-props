@@ -12,7 +12,7 @@ import {Suspense} from 'react';
 import {PageHeader} from '~/components';
 import {NotFound, Layout} from '~/components/index.server';
 
-export default function Page({params}: HydrogenRouteProps) {
+export default function Page({params, ...serverProps}: HydrogenRouteProps) {
   const {
     language: {isoCode: languageCode},
   } = useLocalization();
@@ -37,7 +37,7 @@ export default function Page({params}: HydrogenRouteProps) {
   });
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="page" data={page} />
       </Suspense>

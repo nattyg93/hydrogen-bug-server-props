@@ -1,10 +1,17 @@
 import {Suspense} from 'react';
-import {useLocalization, useShopQuery, CacheLong, gql} from '@shopify/hydrogen';
+import {
+  useLocalization,
+  useShopQuery,
+  CacheLong,
+  gql,
+  useServerProps,
+} from '@shopify/hydrogen';
 import type {Menu, Shop} from '@shopify/hydrogen/storefront-api-types';
 
 import {Header} from '~/components';
 import {Footer} from '~/components/index.server';
 import {parseMenu} from '~/lib/utils';
+import UpdateProps from './UpdateProps.client';
 
 const HEADER_MENU_HANDLE = 'main-menu';
 const FOOTER_MENU_HANDLE = 'footer';
@@ -14,7 +21,12 @@ const SHOP_NAME_FALLBACK = 'Hydrogen';
 /**
  * A server component that defines a structure and organization of a page that can be used in different parts of the Hydrogen app
  */
-export function Layout({children}: {children: React.ReactNode}) {
+export function Layout({
+  children,
+  ...serverProps
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -27,6 +39,7 @@ export function Layout({children}: {children: React.ReactNode}) {
           <HeaderWithMenu />
         </Suspense>
         <main role="main" id="mainContent" className="flex-grow">
+          <ServerProps notCleared={serverProps?.notCleared} />
           {children}
         </main>
       </div>
@@ -34,6 +47,20 @@ export function Layout({children}: {children: React.ReactNode}) {
         <FooterWithMenu />
       </Suspense>
     </>
+  );
+}
+
+function ServerProps({notCleared}) {
+  const json = JSON.stringify(notCleared);
+  console.log('notCleared::', notCleared);
+  return (
+    <div style={{color: 'black', backgroundColor: 'white'}}>
+      <h3>Server Props issue</h3>
+      <UpdateProps />
+      <div style={{marginTop: '50px'}}>
+        Server Value (not cleared):: {notCleared}
+      </div>
+    </div>
   );
 }
 

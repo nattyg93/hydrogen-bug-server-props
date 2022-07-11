@@ -22,11 +22,12 @@ const BLOG_HANDLE = 'Journal';
 export default function Blog({
   pageBy = PAGINATION_SIZE,
   response,
+  ...serverProps
 }: HydrogenRouteProps) {
   response.cache(CacheLong());
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Seo type="page" data={{title: 'All Journals'}} />
       <PageHeader heading={BLOG_HANDLE} className="gap-0">
         <Suspense>

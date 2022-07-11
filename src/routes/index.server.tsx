@@ -18,7 +18,7 @@ import {
   ProductConnection,
 } from '@shopify/hydrogen/storefront-api-types';
 
-export default function Homepage() {
+export default function Homepage({...serverProps}) {
   useServerAnalytics({
     shopify: {
       pageType: ShopifyAnalyticsConstants.pageType.home,
@@ -26,7 +26,7 @@ export default function Homepage() {
   });
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <SeoForHomepage />
       </Suspense>
@@ -65,9 +65,6 @@ function HomepageContent() {
 
   return (
     <>
-      {primaryHero && (
-        <Hero {...primaryHero} height="full" top loading="eager" />
-      )}
       <ProductSwimlane
         data={featuredProducts.nodes}
         title="Featured Products"

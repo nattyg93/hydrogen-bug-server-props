@@ -17,7 +17,10 @@ import {NotFound, Layout} from '~/components/index.server';
 
 const pageBy = 48;
 
-export default function Collection({params}: HydrogenRouteProps) {
+export default function Collection({
+  params,
+  ...serverProps
+}: HydrogenRouteProps) {
   const {handle} = params;
   const {
     language: {isoCode: language},
@@ -49,7 +52,7 @@ export default function Collection({params}: HydrogenRouteProps) {
   });
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="collection" data={collection} />
       </Suspense>

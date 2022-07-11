@@ -22,7 +22,7 @@ import {
   Text,
 } from '~/components';
 
-export default function Product() {
+export default function Product({...serverProps}) {
   const {handle} = useRouteParams();
   const {
     language: {isoCode: languageCode},
@@ -56,7 +56,7 @@ export default function Product() {
   const {shippingPolicy, refundPolicy} = shop;
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="product" data={product} />
       </Suspense>

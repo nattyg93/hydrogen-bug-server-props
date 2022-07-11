@@ -33,7 +33,10 @@ import type {
   ProductConnection,
 } from '@shopify/hydrogen/storefront-api-types';
 
-export default function Account({response}: HydrogenRouteProps) {
+export default function Account({
+  response,
+  ...serverProps
+}: HydrogenRouteProps) {
   response.cache(CacheNone());
 
   const {
@@ -114,7 +117,7 @@ function AuthenticatedAccount({
     : 'Account Details';
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: 'Account details'}} />
       </Suspense>

@@ -14,9 +14,9 @@ import {ProductGrid, PageHeader, Section} from '~/components';
 import {Layout} from '~/components/index.server';
 import type {Collection} from '@shopify/hydrogen/storefront-api-types';
 
-export default function AllProducts() {
+export default function AllProducts({...serverProps}) {
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Seo type="page" data={{title: 'All Products'}} />
       <PageHeader heading="All Products" variant="allCollections" />
       <Section>

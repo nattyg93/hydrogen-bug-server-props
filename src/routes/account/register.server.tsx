@@ -12,11 +12,14 @@ import {AccountCreateForm} from '~/components';
 import {Layout} from '~/components/index.server';
 import {getApiErrorMessage} from '~/lib/utils';
 
-export default function Register({response}: HydrogenRouteProps) {
+export default function Register({
+  response,
+  ...serverProps
+}: HydrogenRouteProps) {
   response.cache(CacheNone());
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: 'Register'}} />
       </Suspense>

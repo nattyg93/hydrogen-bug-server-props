@@ -16,7 +16,11 @@ import {ATTR_LOADING_EAGER} from '~/lib/const';
 
 const BLOG_HANDLE = 'journal';
 
-export default function Post({params, response}: HydrogenRouteProps) {
+export default function Post({
+  params,
+  response,
+  ...serverProps
+}: HydrogenRouteProps) {
   response.cache(CacheLong());
   const {
     language: {isoCode: languageCode},
@@ -50,9 +54,8 @@ export default function Post({params, response}: HydrogenRouteProps) {
   ).format(new Date(publishedAt));
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       {/* Loads Fraunces custom font only on articles */}
-      <CustomFont />
       <Suspense>
         {/* @ts-expect-error Blog article types are not supported in TS */}
         <Seo type="page" data={data.blog.articleByHandle} />

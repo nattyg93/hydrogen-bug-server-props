@@ -9,11 +9,11 @@ import {Layout} from '~/components/index.server';
  * It should only be accessed by a link emailed to the user after
  * they initiate a password reset from `/account/recover`.
  */
-export default function ResetPassword() {
+export default function ResetPassword({...serverProps}) {
   const {id, resetToken} = useRouteParams();
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: 'Reset password'}} />
       </Suspense>

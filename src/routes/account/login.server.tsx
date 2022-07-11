@@ -13,7 +13,7 @@ import {
 import {AccountLoginForm} from '~/components';
 import {Layout} from '~/components/index.server';
 
-export default function Login({response}: HydrogenRouteProps) {
+export default function Login({response, ...serverProps}: HydrogenRouteProps) {
   response.cache(CacheNone());
 
   const {
@@ -27,7 +27,7 @@ export default function Login({response}: HydrogenRouteProps) {
   });
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: 'Login'}} />
       </Suspense>

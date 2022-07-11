@@ -25,7 +25,10 @@ import {Text, PageHeader, Heading} from '~/components';
 import {Layout} from '~/components/index.server';
 import {statusMessage} from '~/lib/utils';
 
-export default function OrderDetails({response}: HydrogenRouteProps) {
+export default function OrderDetails({
+  response,
+  ...serverProps
+}: HydrogenRouteProps) {
   const {id} = useRouteParams();
 
   response.cache(CacheNone());
@@ -71,7 +74,7 @@ export default function OrderDetails({response}: HydrogenRouteProps) {
     firstDiscount?.percentage;
 
   return (
-    <Layout>
+    <Layout {...serverProps}>
       <Suspense>
         <Seo type="noindex" data={{title: `Order ${order.name}`}} />
       </Suspense>
